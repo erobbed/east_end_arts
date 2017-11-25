@@ -6,7 +6,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(username: params[:username], password:params[:password])
+    byebug
+    @user = User.new(user_params)
     if @user.save
       payload = { user_id: @user.id}
       render json: {user: @user, jwt: issue_token(payload)}
@@ -19,6 +20,11 @@ class Api::V1::UsersController < ApplicationController
 
   def me
     render json: current_user
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:username, :password, :email, :admin)
   end
 
 end
