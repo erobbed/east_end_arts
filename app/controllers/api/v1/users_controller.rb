@@ -22,6 +22,10 @@ class Api::V1::UsersController < ApplicationController
     render json: current_user
   end
 
+  def test
+    render json: {test: 'Hey! You hit the API!'}
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :password, :email, :admin)
