@@ -1,26 +1,24 @@
 class ApplicationController < ActionController::API
 
   def issue_token(payload)
-    JWT.encode(payload, "beefysteak")
+    JWT.encode(payload, ENV['JWT_SECRET'])
   end
 
 
   def decoded_token(token)
     begin
-      JWT.decode(token, "beefysteak")
+      JWT.decode(token, ENV['JWT_SECRET'], ENV['JWT ALGORITHM'] )
     rescue JWT::DecodeError
       []
     end
   end
 
   def token
-
     if bearer_token = request.headers["Authorization"]
       jwt_token = bearer_token.split(" ")[1]
     else
       # no return
     end
-
   end
 
   def current_user
@@ -28,17 +26,16 @@ class ApplicationController < ActionController::API
     if !decoded_hash.empty?
       user_id = decoded_hash[0]["user_id"]
       user = User.find(user_id)
-    else
     end
   end
 
   def logged_in?
+    byebug
     !!current_user
   end
 
-
   def authorized
-    redirect_to '/api/v1/login' unless logged_in?
+    render json: {error: "Access denied: not authorized."}, status: 401 unless logged_in?
   end
-  
+
 end

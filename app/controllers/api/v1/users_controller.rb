@@ -1,12 +1,11 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authorized, only: [:me]
+
   def index
     @users = User.all
     render json: @users
   end
 
   def create
-    byebug
     @user = User.new(user_params)
     if @user.save
       payload = { user_id: @user.id}
@@ -19,11 +18,7 @@ class Api::V1::UsersController < ApplicationController
 
 
   def me
-    render json: current_user
-  end
-
-  def test
-    render json: {test: 'Hey! You hit the API!'}
+    render json: {user: current_user}
   end
 
   private
