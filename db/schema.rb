@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20171207172619) do
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
-    t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
