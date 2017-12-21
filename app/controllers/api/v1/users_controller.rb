@@ -7,9 +7,10 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @groups = Group.all
     if @user.save
       payload = { user_id: @user.id}
-      render json: {user: @user, jwt: issue_token(payload), groups: Group.all}
+      render json: {user: @user, jwt: issue_token(payload), groups: @groups}
       ## send some message for success
     else
       ## send some error message
@@ -18,7 +19,8 @@ class Api::V1::UsersController < ApplicationController
 
 
   def me
-    render json: {user: current_user, groups: Group.all}
+    @groups = Group.all
+    render json: {user: current_user, groups: @groups}
   end
 
   private

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
       post '/users', to: 'users#create'
       get '/me', to: 'users#me'
+      post '/group', to: 'groups#setGroup'
     end
   end
 end
