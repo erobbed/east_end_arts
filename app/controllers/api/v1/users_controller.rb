@@ -10,10 +10,9 @@ class Api::V1::UsersController < ApplicationController
     @groups = Group.all
     if @user.save
       payload = { user_id: @user.id}
-      render json: {user: @user, jwt: issue_token(payload), groups: @groups}
-      ## send some message for success
+      render json: {user: @user, jwt: issue_token(payload), groups: @groups, success: "Welcome to SHCC, #{user.username}"}
     else
-      ## send some error message
+      render json: {failure: @user.errors}
     end
   end
 
