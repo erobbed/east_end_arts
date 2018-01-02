@@ -1,4 +1,6 @@
 class Group < ApplicationRecord
+  validates :name, uniqueness: true
+
   has_many :events
   has_many :members
   has_many :users, through: :members, as: :group_members

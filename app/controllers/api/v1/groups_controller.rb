@@ -14,8 +14,9 @@ class Api::V1::GroupsController < ApplicationController
       group.members.last.update(group_admin: true)
 
       render json: group
+    else
+      render json: {failure: group.errors}
     end
-
   end
 
   private
