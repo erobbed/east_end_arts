@@ -5,8 +5,9 @@ Rails.application.routes.draw do
       # resources :users
       post '/login', to: 'auth#create'
       post '/users', to: 'users#create'
-      get '/me', to: 'users#me'
       post '/group', to: 'groups#setGroup'
+      post '/groups', to: 'groups#create'
+      get '/me', to: 'users#me'
     end
   end
 end
