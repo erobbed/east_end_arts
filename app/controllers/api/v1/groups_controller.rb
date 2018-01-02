@@ -12,8 +12,8 @@ class Api::V1::GroupsController < ApplicationController
       group.save
       group.users << user
       group.members.last.update(group_admin: true)
-
-      render json: group
+      @groups = Group.all
+      render json: {groups: @groups, success: "#{group.name} has been created"}
     else
       render json: {failure: group.errors}
     end
