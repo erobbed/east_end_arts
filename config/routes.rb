@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post '/group', to: 'groups#setGroup'
       post '/groups', to: 'groups#create'
       get '/me', to: 'users#me'
+      post '/events', to: 'events#create'
     end
   end
 end
