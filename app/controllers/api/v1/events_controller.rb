@@ -15,6 +15,12 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
+  def edit
+    event = Event.find(params[:id])
+    event.update(public: !event.public)
+    render json: {events: Event.all, success: "#{event.title} has been created"}
+  end
+
   private
   def event_params
     params.require(:event).permit(:title, :start_date, :end_date, :details, :lat, :long)

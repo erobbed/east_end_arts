@@ -8,9 +8,10 @@ class Api::V1::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @groups = Group.all
+    @events = Event.all
     if @user.save
       payload = { user_id: @user.id}
-      render json: {user: @user, jwt: issue_token(payload), groups: @groups, success: "Welcome to SHCC, #{@user.username}"}
+      render json: {user: @user, jwt: issue_token(payload), groups: @groups, events: @events, success: "Welcome to SHCC, #{@user.username}"}
     else
       render json: {failure: @user.errors}
     end
@@ -19,7 +20,8 @@ class Api::V1::UsersController < ApplicationController
 
   def me
     @groups = Group.all
-    render json: {user: current_user, groups: @groups}
+    @events = Event.all
+    render json: {user: current_user, groups: @groups, events: @events }
   end
 
   private
