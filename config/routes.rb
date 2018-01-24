@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get '/me', to: 'users#me'
       post '/events', to: 'events#create'
       patch '/events/:id', to: 'events#edit'
+      get '/events', to: 'events#index'
     end
   end
 end
