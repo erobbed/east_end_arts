@@ -9,6 +9,14 @@ class Api::V1::NoticesController < ApplicationController
     end
   end
 
+  def latest
+    if !Notice.all.empty?
+      render json: { notice: Notice.last, success: 'Found the latest notice' }
+    else
+      render json: { failure: 'No notices in database!' }
+    end
+  end
+
   private
 
   def notice_params

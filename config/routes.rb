@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       patch '/events/:id', to: 'events#edit'
       get '/events', to: 'events#index'
       post '/notices', to: 'notices#create'
+      get '/notices', to: 'notices#latest'
     end
   end
 end
