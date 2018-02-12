@@ -27,12 +27,20 @@ groups = [
 
 catgories = [
   'Art Exhibit',
-  'Music',
-  'Theatre',
-  'Performance',
-  'Readings',
+  'Astronomy',
+  'Benefit Event',
   'Book Signing',
-  'Children’s Program'
+  'Children’s Program',
+  'Culinary',
+  'Ecology',
+  'Film',
+  'Lecture',
+  'Literary',
+  'Music',
+  'Nature',
+  'Performance',
+  'Theatre',
+  'Walking Tours and Trails'
 ]
 
 groups.each do |group|
