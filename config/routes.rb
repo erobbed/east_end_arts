@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       # resources :users
       post '/login', to: 'auth#create'
+      post '/admin', to: 'users#admin'
       post '/users', to: 'users#create'
+      get '/users', to: 'users#index'
       post '/group', to: 'groups#setGroup'
       post '/groups', to: 'groups#create'
       get '/me', to: 'users#me'

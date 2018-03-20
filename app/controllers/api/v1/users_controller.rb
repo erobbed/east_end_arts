@@ -22,6 +22,13 @@ class Api::V1::UsersController < ApplicationController
     render json: { user: current_user, groups: @groups, events: @events, notice: Notice.last }
   end
 
+  def admin
+    @user = User.find(params[:user][:id])
+    @user.update_attribute(:admin, !@user.admin)
+    @users = User.all
+    render json: @users
+  end
+
   private
 
   def user_params
