@@ -1,7 +1,6 @@
 class Api::V1::EventsController < ApplicationController
-
   def index
-    render json: {events: Event.all, success: "Returning all Events"}
+    render json: { events: Event.all, success: 'Returning all Events' }
   end
 
   def create
@@ -13,19 +12,26 @@ class Api::V1::EventsController < ApplicationController
 
     if event.valid?
       event.save
-      render json: {events: Event.all, success: "#{event.title} has been created"}
+      render json: { events: Event.all, success: "#{event.title} has been created" }
     else
-      render json: {failure: event.errors}
+      render json: { failure: event.errors }
     end
   end
 
   def edit
     event = Event.find(params[:id])
     event.update(public: !event.public)
-    render json: {events: Event.all, success: "#{event.title} has been created"}
+    render json: { events: Event.all, success: "#{event.title} has been created" }
+  end
+
+  def delete
+    event = Event.find(params[:id])
+    event.delete
+    render json: { events: Event.all, success: "#{event.title} has been deleted" }
   end
 
   private
+
   def event_params
     params.require(:event).permit(:title, :start_date, :end_date, :details, :location)
   end
