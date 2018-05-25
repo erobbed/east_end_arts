@@ -7,7 +7,14 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://shacc-ed3ef.firebaseapp.com'
+    origins 'https://shacc.art'
+    resource '*',
+             headers: :any,
+             methods: %i[get post put patch delete options head]
+  end
+
+  allow do
+    origins 'https://www.shacc.art'
     resource '*',
              headers: :any,
              methods: %i[get post put patch delete options head]
