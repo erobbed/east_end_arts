@@ -1,5 +1,4 @@
 class Api::V1::GroupsController < ApplicationController
-
   def setGroup
     @group = Group.find(params[:group][:id])
     render json: @group
@@ -13,13 +12,14 @@ class Api::V1::GroupsController < ApplicationController
       group.users << user
       group.members.last.update(group_admin: true)
       @groups = Group.all
-      render json: {groups: @groups, success: "#{group.name} has been created"}
+      render json: { groups: @groups, success: "#{group.name} has been created" }
     else
-      render json: {failure: group.errors}
+      render json: { failure: group.errors }
     end
   end
 
   private
+
   def group_params
     params.require(:group).permit(:name)
   end
