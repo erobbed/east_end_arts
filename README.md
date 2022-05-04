@@ -19,7 +19,7 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+* Deployment instructions - These are covered in the how-to doc located at this url: https://docs.google.com/document/d/1bDrBpHRdSaiHviztdTs_gYA9XJ_EZFBdmX36VmvetN0/edit
 
 * ...
 # east_end_arts
